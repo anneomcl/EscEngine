@@ -1,0 +1,5 @@
+:talk
+Say name "Hello, world!"
+
+:examine
+Say default "Look, it's a robot!"
