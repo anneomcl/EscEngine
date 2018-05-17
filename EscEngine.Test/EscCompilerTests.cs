@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using EscEngine.Test.TestData;
+using Esckie.Test.TestData;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace EscEngine.Test
+namespace Esckie.Test
 {
     [TestClass]
     public class EscCompilerTests
@@ -34,12 +34,12 @@ namespace EscEngine.Test
         [TestMethod]
         public void EscCompilerParsesEventsToTable()
         {
-            var result = EscCompiler.Compile(Path.Combine("../../TestData/", "TalkExamineSample.esc"), TestEscActions.ScriptActions);
+            var result = EscCompiler.Compile(Path.Combine("../../TestData/", "SayExamineSample.esc"), TestEscActions.ScriptActions);
             result.Should().NotBeNull();
-            result.Should().BeEquivalentTo(GetExpectedResultForTalkExamineSample());
+            result.Should().BeEquivalentTo(GetExpectedResultForSayExamineSample());
         }
 
-        private EscEventTable GetExpectedResultForTalkExamineSample()
+        private EscEventTable GetExpectedResultForSayExamineSample()
         {
             return new EscEventTable
             {

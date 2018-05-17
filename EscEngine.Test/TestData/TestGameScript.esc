@@ -1,0 +1,13 @@
+:examine
+Say Default "Test examine."
+CameraToObject Game
+
+#This is a comment.
+
+> [test]
+	Say Default "Test True"
+	set_global test false
+> [test]
+	Say Default "Shouldn't be here"
+> [!test]
+	Say Default "Test False"

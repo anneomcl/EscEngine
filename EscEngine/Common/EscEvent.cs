@@ -1,4 +1,4 @@
-﻿namespace EscEngine
+﻿namespace Esckie
 {
     public class EscEvent
     {

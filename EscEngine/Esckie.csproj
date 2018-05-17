@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EscEngine</RootNamespace>
     <AssemblyName>EscEngine</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -57,10 +59,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\EscActionsBase.cs" />
     <Compile Include="EscCompiler.cs" />
     <Compile Include="Common\EscEvent.cs" />
     <Compile Include="Common\EscEventTable.cs" />
     <Compile Include="EscVirtualMachine.cs" />
+    <Compile Include="Actions\IEscActions.cs" />
+    <Compile Include="Actions\IEscActionsBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\VmCommand.cs" />
   </ItemGroup>

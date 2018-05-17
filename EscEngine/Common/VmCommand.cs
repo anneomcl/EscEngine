@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EscEngine
+namespace Esckie
 {
     public class VmCommand
     {

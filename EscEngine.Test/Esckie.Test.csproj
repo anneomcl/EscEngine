@@ -5,10 +5,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{93B9AE41-1485-4152-9E95-F8B8CF7C65F0}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EscEngine.Test</RootNamespace>
-    <AssemblyName>EscEngine.Test</AssemblyName>
+    <RootNamespace>Esckie.Test</RootNamespace>
+    <AssemblyName>Esckie.Test</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -36,6 +36,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
@@ -75,12 +78,12 @@
     <None Include="packages.config" />
     <None Include="TestData\Comment.esc" />
     <None Include="TestData\Empty.esc" />
-    <None Include="TestData\TalkExamineSample.esc" />
+    <None Include="TestData\SayExamineSample.esc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EscEngine\EscEngine.csproj">
+    <ProjectReference Include="..\EscEngine\Esckie.csproj">
       <Project>{fb580d08-f169-44a2-b0f8-d646bfd84bb7}</Project>
-      <Name>EscEngine</Name>
+      <Name>Esckie</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

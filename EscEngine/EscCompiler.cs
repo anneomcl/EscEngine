@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace EscEngine
+namespace Esckie
 {
     public class EscCompiler
     {

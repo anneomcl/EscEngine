@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace EscEngine.Test.TestData
+namespace Esckie.Test.TestData
 {
     public static class TestEscActions
     {
