@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Esckie.Common;
 
 namespace Esckie
 {
@@ -17,7 +18,7 @@ namespace Esckie
         /// <param name="startIndex"></param>
         /// <param name="actions"></param>
         /// <returns></returns>
-        public void CompileEscEvent(List<string> lines, int startIndex, Dictionary<string, IList<Type>> actions)
+        public void CompileEscEvent(List<string> lines, int startIndex, Dictionary<string, ActionInfo> actions)
         {
             var root = new VmCommand();
             var eventLines = lines.GetRange(startIndex, lines.Count() - startIndex);

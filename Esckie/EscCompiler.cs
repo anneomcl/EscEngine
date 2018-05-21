@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
+using Esckie.Common;
 
 namespace Esckie
 {
     public class EscCompiler
     {
-        protected static EscCompiler _compiler;
+        private static EscCompiler _compiler;
         public static EscCompiler Instance
         {
             get
@@ -21,11 +20,11 @@ namespace Esckie
             }
         }
 
-        protected EscCompiler()
+        private EscCompiler()
         {
         }
 
-        public EscEventTable Compile(string path, Dictionary<string, IList<Type>> actions)
+        public EscEventTable Compile(string path, Dictionary<string, ActionInfo> actions)
         {
             var eventTable = new EscEventTable();
             var lines = File.ReadAllLines(path);

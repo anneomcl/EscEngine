@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Esckie.Common;
 
 namespace Esckie
 {
@@ -32,7 +33,7 @@ namespace Esckie
         /// <param name="line"></param>
         /// <param name="indentLevel"></param>
         /// <param name="actions"></param>
-        public void ProcessVmCommand(string line, int indentLevel, Dictionary<string, IList<Type>> actions)
+        public void ProcessVmCommand(string line, int indentLevel, Dictionary<string, ActionInfo> actions)
         {
             var newCommand = new VmCommand();
 
@@ -53,7 +54,7 @@ namespace Esckie
             //Handle dialog options
 
             //Set the root's parameters for the given action
-            if (tokens.Count() != actions[newCommand.Name].Count())
+            if (tokens.Count() != actions[newCommand.Name].Parameters.Count())
             {
                 throw new Exception();
             }
