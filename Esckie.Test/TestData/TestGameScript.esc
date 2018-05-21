@@ -4,9 +4,10 @@ CameraToObject Game
 
 #This is a comment.
 
+:talk
 > [test]
 	Say Default "Test True"
-	set_global test false
+	SetGlobal test false
 > [test]
 	Say Default "Shouldn't be here"
 > [!test]

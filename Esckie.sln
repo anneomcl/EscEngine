@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Esckie", "EscEngine\Esckie.csproj", "{FB580D08-F169-44A2-B0F8-D646BFD84BB7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Esckie", "Esckie\Esckie.csproj", "{FB580D08-F169-44A2-B0F8-D646BFD84BB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Esckie.Test", "EscEngine.Test\Esckie.Test.csproj", "{93B9AE41-1485-4152-9E95-F8B8CF7C65F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Esckie.Test", "Esckie.Test\Esckie.Test.csproj", "{93B9AE41-1485-4152-9E95-F8B8CF7C65F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{93B9AE41-1485-4152-9E95-F8B8CF7C65F0}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Esckie.Test</RootNamespace>
     <AssemblyName>Esckie.Test</AssemblyName>
@@ -81,7 +81,7 @@
     <None Include="TestData\SayExamineSample.esc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EscEngine\Esckie.csproj">
+    <ProjectReference Include="..\Esckie\Esckie.csproj">
       <Project>{fb580d08-f169-44a2-b0f8-d646bfd84bb7}</Project>
       <Name>Esckie</Name>
     </ProjectReference>
