@@ -13,28 +13,28 @@ namespace Esckie.Test
         [TestMethod]
         public void EscCompilerOpensEmptyFileSuccess()
         {
-            var result = EscCompiler.Compile(Path.Combine("../../TestData/", "Empty.esc"), TestEscActions.ScriptActions);
+            var result = EscCompiler.Instance.Compile(Path.Combine("../../TestData/", "Empty.esc"), TestEscActions.ScriptActions);
             result.Should().NotBeNull();
         }
 
         [TestMethod]
         public void EscCompilerThrowsOnInvalidFileName()
         {
-            Action action = () => EscCompiler.Compile(Path.Combine("../../TestData/", "Invalid.esc"), TestEscActions.ScriptActions);
+            Action action = () => EscCompiler.Instance.Compile(Path.Combine("../../TestData/", "Invalid.esc"), TestEscActions.ScriptActions);
             action.Should().Throw<FileNotFoundException>();
         }
 
         [TestMethod]
         public void EscCompilerDoesNotProcessCommentLine()
         {
-            var result = EscCompiler.Compile(Path.Combine("../../TestData/", "Comment.esc"), TestEscActions.ScriptActions);
+            var result = EscCompiler.Instance.Compile(Path.Combine("../../TestData/", "Comment.esc"), TestEscActions.ScriptActions);
             result.Should().NotBeNull();
         }
 
         [TestMethod]
         public void EscCompilerParsesEventsToTable()
         {
-            var result = EscCompiler.Compile(Path.Combine("../../TestData/", "SayExamineSample.esc"), TestEscActions.ScriptActions);
+            var result = EscCompiler.Instance.Compile(Path.Combine("../../TestData/", "SayExamineSample.esc"), TestEscActions.ScriptActions);
             result.Should().NotBeNull();
             result.Should().BeEquivalentTo(GetExpectedResultForSayExamineSample());
         }
@@ -59,7 +59,7 @@ namespace Esckie.Test
                                         Name = "Say",
                                         Parameters = new string[]
                                         {
-                                            "name", "\"Hello, world!\""
+                                            "Name", "\"Hello, world!\""
                                         }
                                     }
                                 }
@@ -80,7 +80,15 @@ namespace Esckie.Test
                                         Name = "Say",
                                         Parameters = new string[]
                                         {
-                                            "default", "\"Look, it's a robot!\""
+                                            "Default", "\"Look, it's a robot!\""
+                                        }
+                                    },
+                                    new VmCommand
+                                    {
+                                        Name = "CameraToObject",
+                                        Parameters = new string[]
+                                        {
+                                            "Robot"
                                         }
                                     }
                                 }

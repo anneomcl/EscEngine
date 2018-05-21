@@ -8,10 +8,17 @@ namespace Esckie.Test
     public class EscVmTests
     {
         [TestMethod]
-        public void EscVmRunsSayEvent()
+        public void EscVmRunsTalkEventSuccess()
         {
-            var events = EscCompiler.Compile(Path.Combine("../../TestData/", "SayExamineSample.esc"), TestEscActions.ScriptActions);
-            EscVirtualMachine.RunEvents(events, "Say", typeof(TestEscActions));
+            var events = EscCompiler.Instance.Compile(Path.Combine("../../TestData/", "SayExamineSample.esc"), TestEscActions.ScriptActions);
+            EscVirtualMachine.RunEvents(events, "talk", typeof(TestEscActions));
+        }
+
+        [TestMethod]
+        public void EscVmRunsExamineEventSuccess()
+        {
+            var events = EscCompiler.Instance.Compile(Path.Combine("../../TestData/", "SayExamineSample.esc"), TestEscActions.ScriptActions);
+            EscVirtualMachine.RunEvents(events, "examine", typeof(TestEscActions));
         }
     }
 }

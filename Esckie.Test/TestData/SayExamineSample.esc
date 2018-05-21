@@ -1,5 +1,6 @@
 :talk
-Say name "Hello, world!"
+Say Name "Hello, world!"
 
 :examine
-Say default "Look, it's a robot!"
+CameraToObject Robot
+Say Default "Look, it's a robot!"

@@ -7,8 +7,8 @@
     <ProjectGuid>{FB580D08-F169-44A2-B0F8-D646BFD84BB7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EscEngine</RootNamespace>
-    <AssemblyName>EscEngine</AssemblyName>
+    <RootNamespace>Esckie</RootNamespace>
+    <AssemblyName>Esckie</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Actions\EscActionsBase.cs" />
     <Compile Include="EscCompiler.cs" />
+    <Compile Include="EscCompilerHelpers.cs" />
     <Compile Include="Common\EscEvent.cs" />
     <Compile Include="Common\EscEventTable.cs" />
     <Compile Include="EscVirtualMachine.cs" />
