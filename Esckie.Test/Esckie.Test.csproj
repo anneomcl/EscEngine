@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EscActionsHandlerTests.cs" />
+    <Compile Include="EscCompilerHelpersTests.cs" />
     <Compile Include="EscCompilerTests.cs" />
     <Compile Include="EscVmTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

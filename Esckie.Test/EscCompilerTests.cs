@@ -49,9 +49,8 @@ namespace Esckie.Test
                 {
                     {
                         "talk",
-                        new EscEvent
+                        new EscEvent("talk")
                         {
-                            EventName = "talk",
                             EventRoot = new VmCommand
                             {
                                 Links = new List<VmCommand>()
@@ -70,9 +69,8 @@ namespace Esckie.Test
                     },
                     {
                         "examine",
-                        new EscEvent
+                        new EscEvent("examine")
                         {
-                            EventName = "examine",
                             EventRoot = new VmCommand
                             {
                                 Links = new List<VmCommand>()

@@ -7,6 +7,11 @@ namespace Esckie
 {
     public class EscEvent
     {
+        public EscEvent(string eventName)
+        {
+            this.EventName = eventName;
+        }
+
         public string EventName { get; set; }
 
         public VmCommand EventRoot { get; set; }

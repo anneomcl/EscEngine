@@ -7,41 +7,34 @@ namespace Esckie
 {
     public static class EscCompilerHelpers
     {
-        private const string EventIndicator = ":";
+        public const string EventIndicator = ":";
+        public const string CommentIndicator = "#";
 
+        /// <remarks>
+        /// A line is either a comment or not a comment.
+        /// Comments at the end of lines are not supported.
+        /// </remarks>
         public static bool IsComment(string line)
         {
-            foreach (char i in line)
+            if (!string.IsNullOrWhiteSpace(line) &&
+                line.First() == CommentIndicator.First())
             {
-                if (i == '#')
-                {
-                    return true;
-                }
-                else if (!String.IsNullOrWhiteSpace(i.ToString()))
-                {
-                    return false;
-                }
+                return true;
             }
-
-            return true;
+            return false;
         }
 
+        /// <summary>
+        /// Parses a line of Esckie to a list of string tokens.
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
         public static IList<string> ParseLineToTokens(string line)
         {
             return Regex.Matches(line, "[^\\s\"']+|\"[^\"]*\"|'[^']*'")
                 .Cast<Match>()
                 .Select(m => m.Value)
                 .ToList();
-        }
-
-        public static bool IsConditionFlag(string line)
-        {
-            if (line[0] == '[' && line[line.Length - 1] == ']')
-            {
-                return true;
-            }
-
-            return false;
         }
 
         public static bool IsEventProcessingFinished(string line)
@@ -68,11 +61,6 @@ namespace Esckie
             return 0;
         }
 
-        public static string Trim(string line)
-        {
-            return new string(line.Where(x => !char.IsWhiteSpace(x)).ToArray());
-        }
-
         /// <summary>
         /// Cleans and parses an event from a string.
         /// </summary>
@@ -84,17 +72,14 @@ namespace Esckie
         /// <returns></returns>
         public static bool TryParseEscEvent(string line, out EscEvent ev)
         {
-            var cleanLine = EscCompilerHelpers.Trim(line);
-            if (cleanLine.First() == EventIndicator.First())
+            if (!string.IsNullOrWhiteSpace(line) &&
+                line.First() == EventIndicator.First())
             {
-                ev = new EscEvent()
-                {
-                    EventName = cleanLine.Replace(EventIndicator, "")
-                };
+                ev = new EscEvent(line.Substring(1));
                 return true;
             }
 
-            ev = new EscEvent();
+            ev = null;
             return false;
         }
     }
