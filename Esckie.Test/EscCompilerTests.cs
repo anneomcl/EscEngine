@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Esckie.Actions;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -10,7 +9,13 @@ namespace Esckie.Test
     [TestClass]
     public class EscCompilerTests
     {
-        private EscActionsHandler handler = EscActionsHandler.Instance;
+        private EscActionsHandler handler;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            this.handler = new EscActionsHandler();
+        }
 
         [TestMethod]
         public void EscCompilerOpensEmptyFileSuccess()

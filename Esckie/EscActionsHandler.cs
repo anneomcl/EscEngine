@@ -3,29 +3,22 @@ using System.Linq;
 using System.Reflection;
 using Esckie.Common;
 
-namespace Esckie.Actions
+namespace Esckie
 {
     public class EscActionsHandler
     {
         public Dictionary<string, ActionInfo> ScriptActions { get; }
 
-        private static EscActionsHandler _handler;
-        public static EscActionsHandler Instance
-        {
-            get
-            {
-                if (_handler == null)
-                {
-                    _handler = new EscActionsHandler();
-                }
-                return _handler;
-            }
-        }
-
-        private EscActionsHandler()
+        public EscActionsHandler()
         {
             this.ScriptActions = new Dictionary<string, ActionInfo>();
-            this.InitializeActions();
+            this.InitializeActions(Assembly.GetExecutingAssembly());
+        }
+
+        public EscActionsHandler(Assembly currAssembly)
+        {
+            this.ScriptActions = new Dictionary<string, ActionInfo>();
+            this.InitializeActions(currAssembly);
         }
 
         public void ExecuteAction(VmCommand task)
@@ -34,9 +27,9 @@ namespace Esckie.Actions
             taskFunc.Invoke(null, task.Parameters);
         }
 
-        private void InitializeActions()
+        private void InitializeActions(Assembly currAssembly)
         {
-            var assemblies = Assembly.GetExecutingAssembly().GetTypes()
+            var assemblies = currAssembly.GetTypes()
                 .Where(t => t.IsSubclassOf(typeof(EscActions)) && t.IsClass)
                 .Distinct()
                 .ToList();

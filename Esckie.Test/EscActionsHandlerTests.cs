@@ -10,19 +10,26 @@ namespace Esckie.Test
     [TestClass]
     public class EscActionsHandlerTests
     {
+        private EscActionsHandler handler;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            this.handler = new EscActionsHandler();
+        }
+
         [TestMethod]
         public void HandlerShouldConvertAllInterfaceAssembliesToEscActions()
         {
-            var handler = EscActionsHandler.Instance;
-            handler.ScriptActions.Should().NotBeNull();
-            handler.ScriptActions.Should().BeEquivalentTo(GetExpectedEscActions());
+            this.handler.ScriptActions.Should().NotBeNull();
+            this.handler.ScriptActions.Should().BeEquivalentTo(GetExpectedEscActions());
         }
 
         private Dictionary<string, ActionInfo> GetExpectedEscActions()
         {
             return new Dictionary<string, ActionInfo>()
             {
-                { "CameraToObject", new ActionInfo { Parameters = new List<Type> { typeof(string) }, ActionType = typeof(CameraActions) } },
+                { "CameraToObject", new ActionInfo { Parameters = new List<Type> { typeof(string) }, ActionType = typeof(CameraEscActions) } },
                 { "Say", new ActionInfo { Parameters = new List<Type> { typeof(string), typeof(string) }, ActionType = typeof(DefaultEscActions) } }
             };
         }
