@@ -9,6 +9,12 @@ namespace Esckie
     {
         public Dictionary<string, ActionMetadata> ScriptActions { get; }
 
+        public EscActionsHandler()
+        {
+            this.ScriptActions = new Dictionary<string, ActionMetadata>();
+            this.InitializeActions(Assembly.GetExecutingAssembly());
+        }
+
         public EscActionsHandler(Assembly currAssembly)
         {
             this.ScriptActions = new Dictionary<string, ActionMetadata>();
