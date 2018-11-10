@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Esckie.Helpers;
 
 namespace Esckie.Common
 {
@@ -14,7 +15,7 @@ namespace Esckie.Common
             var currIndentLevel = 0;
             foreach (var line in lines)
             {
-                if (string.IsNullOrWhiteSpace(line))
+                if (StringExtensions.IsNullOrWhiteSpace(line))
                 {
                     continue;
                 }

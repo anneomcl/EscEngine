@@ -2,18 +2,15 @@
 <package >
   <metadata>
     <id>Esckie</id>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <title>Esckie</title>
     <authors>HappieCat Studios</authors>
     <owners>Anne McLaughlin</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A scripting language for game development.</description>
     <copyright>Copyright 2018</copyright>
-    <dependencies>
-      <dependency id="System.ValueTuple" version="4.4.0" />
-    </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\Esckie.dll" target="lib" />
+    <file src="bin\Release\Esckie.dll" target="net35\lib" />
   </files>
 </package>

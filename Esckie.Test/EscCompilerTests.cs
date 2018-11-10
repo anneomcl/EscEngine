@@ -63,7 +63,7 @@ namespace Esckie.Test
                                 new EscCommand
                                 {
                                     Name = "Say",
-                                    Parameters = new string[]
+                                    Parameters = new List<string>()
                                     {
                                         "Name", "\"Hello, world!\""
                                     }
@@ -84,7 +84,7 @@ namespace Esckie.Test
                                 new EscCommand
                                 {
                                     Name = "Say",
-                                    Parameters = new string[]
+                                    Parameters = new List<string>()
                                     {
                                         "Default", "\"Look, it's a robot!\""
                                     }
@@ -92,7 +92,7 @@ namespace Esckie.Test
                                 new EscCommand
                                 {
                                     Name = "CameraToObject",
-                                    Parameters = new string[]
+                                    Parameters = new List<string>()
                                     {
                                         "Robot"
                                     }

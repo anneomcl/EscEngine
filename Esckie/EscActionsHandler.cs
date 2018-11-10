@@ -24,7 +24,7 @@ namespace Esckie
         public void ExecuteAction(EscCommand task)
         {
             var taskFunc = ScriptActions[task.Name].ActionType.GetMethod(task.Name);
-            taskFunc.Invoke(null, task.Parameters);
+            taskFunc.Invoke(null, task.Parameters.ToArray());
         }
 
         private void InitializeActions(Assembly currAssembly)

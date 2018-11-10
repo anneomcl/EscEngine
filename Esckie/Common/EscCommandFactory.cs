@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Esckie.Helpers;
 
 namespace Esckie.Common
 {
@@ -31,7 +32,7 @@ namespace Esckie.Common
                 throw new Exception();
             }
 
-            newCommand.Parameters = tokens.ToArray();
+            newCommand.Parameters = tokens;
 
             return newCommand;
         }

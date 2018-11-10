@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Esckie.Common;
 
-namespace Esckie
+namespace Esckie.Helpers
 {
     public static class EscCompilerHelpers
     {
@@ -17,7 +15,7 @@ namespace Esckie
         /// </remarks>
         public static bool IsComment(string line)
         {
-            if (!string.IsNullOrWhiteSpace(line) &&
+            if (!StringExtensions.IsNullOrWhiteSpace(line) &&
                 line.First() == CommentIndicator.First())
             {
                 return true;
@@ -30,7 +28,7 @@ namespace Esckie
         /// </summary>
         /// <param name="line"></param>
         /// <returns></returns>
-        public static IList<string> ParseLineToTokens(string line)
+        public static List<string> ParseLineToTokens(string line)
         {
             return Regex.Matches(line, "[^\\s\"']+|\"[^\"]*\"|'[^']*'")
                 .Cast<Match>()
@@ -40,7 +38,7 @@ namespace Esckie
 
         public static bool IsEventProcessingFinished(string line)
         {
-            if (string.IsNullOrWhiteSpace(line))
+            if (StringExtensions.IsNullOrWhiteSpace(line))
             {
                 return false;
             }
@@ -71,7 +69,7 @@ namespace Esckie
         /// </remarks>
         public static bool TryParseEscEvent(string line, out string eventName)
         {
-            if (!string.IsNullOrWhiteSpace(line) &&
+            if (!StringExtensions.IsNullOrWhiteSpace(line) &&
                 line.First() == EventIndicator.First())
             {
                 eventName = line.Substring(1);

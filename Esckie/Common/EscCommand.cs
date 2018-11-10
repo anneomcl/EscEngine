@@ -8,7 +8,7 @@ namespace Esckie
         public EscCommand()
         {
             Children = new List<EscCommand>();
-            Parameters = Array.Empty<string>();
+            Parameters = new List<string>();
             Conditions = new VmCondition();
         }
 
@@ -16,13 +16,13 @@ namespace Esckie
         {
             Name = name;
             Children = new List<EscCommand>();
-            Parameters = Array.Empty<string>();
+            Parameters = new List<string>();
             Conditions = new VmCondition();
         }
 
         public string Name { get; set; }
         public IList<EscCommand> Children { get; set; }
-        public string[] Parameters { get; set; }
+        public List<string> Parameters { get; set; }
         public VmCondition Conditions { get; set; }
     }
 
