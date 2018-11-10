@@ -59,18 +59,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actions\CameraEscActions.cs" />
-    <Compile Include="Actions\DefaultEscActions.cs" />
-    <Compile Include="Actions\EscActions.cs" />
-    <Compile Include="Common\ActionInfo.cs" />
+    <Compile Include="Actions\CameraEscAction.cs" />
+    <Compile Include="Actions\DialogueEscAction.cs" />
+    <Compile Include="Actions\EscAction.cs" />
+    <Compile Include="Common\ActionMetadata.cs" />
+    <Compile Include="Common\EscEventFactory.cs" />
+    <Compile Include="Common\EscCommandFactory.cs" />
     <Compile Include="EscActionsHandler.cs" />
     <Compile Include="EscCompiler.cs" />
     <Compile Include="Helpers\EscCompilerHelpers.cs" />
     <Compile Include="Common\EscEvent.cs" />
-    <Compile Include="Common\EscEventTable.cs" />
     <Compile Include="EscVirtualMachine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Common\VmCommand.cs" />
+    <Compile Include="Common\EscCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

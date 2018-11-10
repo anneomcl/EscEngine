@@ -7,21 +7,15 @@ namespace Esckie
 {
     public class EscActionsHandler
     {
-        public Dictionary<string, ActionInfo> ScriptActions { get; }
-
-        public EscActionsHandler()
-        {
-            this.ScriptActions = new Dictionary<string, ActionInfo>();
-            this.InitializeActions(Assembly.GetExecutingAssembly());
-        }
+        public Dictionary<string, ActionMetadata> ScriptActions { get; }
 
         public EscActionsHandler(Assembly currAssembly)
         {
-            this.ScriptActions = new Dictionary<string, ActionInfo>();
+            this.ScriptActions = new Dictionary<string, ActionMetadata>();
             this.InitializeActions(currAssembly);
         }
 
-        public void ExecuteAction(VmCommand task)
+        public void ExecuteAction(EscCommand task)
         {
             var taskFunc = ScriptActions[task.Name].ActionType.GetMethod(task.Name);
             taskFunc.Invoke(null, task.Parameters);
@@ -30,7 +24,7 @@ namespace Esckie
         private void InitializeActions(Assembly currAssembly)
         {
             var assemblies = currAssembly.GetTypes()
-                .Where(t => t.IsSubclassOf(typeof(EscActions)) && t.IsClass)
+                .Where(t => t.IsSubclassOf(typeof(EscAction)) && t.IsClass)
                 .Distinct()
                 .ToList();
 
@@ -46,7 +40,7 @@ namespace Esckie
                     {
                         ScriptActions.Add(
                             action.Name,
-                            new ActionInfo
+                            new ActionMetadata
                             {
                                 ActionType = assembly,
                                 Parameters = action.GetParameters()

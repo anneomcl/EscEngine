@@ -1,6 +1,6 @@
 ﻿namespace Esckie.Actions
 {
-    public class DefaultEscActions : EscActions
+    public class DialogueEscAction : EscAction
     {
         public static bool Say(string character, string text)
         {

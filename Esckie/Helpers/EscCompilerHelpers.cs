@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Esckie.Common;
 
 namespace Esckie
 {
@@ -62,25 +63,25 @@ namespace Esckie
         }
 
         /// <summary>
-        /// Cleans and parses an event from a string.
+        /// Cleans and parses an event name from a string.
         /// </summary>
         /// <remarks>
         /// For example, starting a script with :interact means that the
         /// script will be executed when an "interact" event occurs on the object.
         /// </remarks>
-        /// <param name="line"></param>
-        /// <returns></returns>
-        public static bool TryParseEscEvent(string line, out EscEvent ev)
+        public static bool TryParseEscEvent(string line, out string eventName)
         {
             if (!string.IsNullOrWhiteSpace(line) &&
                 line.First() == EventIndicator.First())
             {
-                ev = new EscEvent(line.Substring(1));
+                eventName = line.Substring(1);
                 return true;
             }
-
-            ev = null;
-            return false;
+            else
+            {
+                eventName = null;
+                return false;
+            }
         }
     }
 }

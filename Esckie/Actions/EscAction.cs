@@ -1,6 +1,6 @@
 ﻿namespace Esckie
 {
-    public class EscActions
+    public class EscAction
     {
     }
 }

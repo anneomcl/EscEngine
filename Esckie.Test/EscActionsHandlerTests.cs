@@ -25,12 +25,12 @@ namespace Esckie.Test
             this.handler.ScriptActions.Should().BeEquivalentTo(GetExpectedEscActions());
         }
 
-        private Dictionary<string, ActionInfo> GetExpectedEscActions()
+        private Dictionary<string, ActionMetadata> GetExpectedEscActions()
         {
-            return new Dictionary<string, ActionInfo>()
+            return new Dictionary<string, ActionMetadata>()
             {
-                { "CameraToObject", new ActionInfo { Parameters = new List<Type> { typeof(string) }, ActionType = typeof(CameraEscActions) } },
-                { "Say", new ActionInfo { Parameters = new List<Type> { typeof(string), typeof(string) }, ActionType = typeof(DefaultEscActions) } }
+                { "CameraToObject", new ActionMetadata { Parameters = new List<Type> { typeof(string) }, ActionType = typeof(CameraEscAction) } },
+                { "Say", new ActionMetadata { Parameters = new List<Type> { typeof(string), typeof(string) }, ActionType = typeof(DialogueEscAction) } }
             };
         }
     }

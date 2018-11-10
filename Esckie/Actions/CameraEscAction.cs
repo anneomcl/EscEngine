@@ -1,6 +1,6 @@
 ﻿namespace Esckie.Actions
 {
-    public class CameraEscActions : EscActions
+    public class CameraEscAction : EscAction
     {
         public static bool CameraToObject(string obj)
         {

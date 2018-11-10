@@ -1,4 +1,5 @@
-﻿using Esckie.Actions;
+﻿using System.Collections.Generic;
+using Esckie.Actions;
 
 namespace Esckie
 {
@@ -28,15 +29,14 @@ namespace Esckie
         /// For example, on an "Interactable", call this when the
         /// "interact" input is given. Need to compile script attached
         /// to object into event table, then pass to this.</remarks>
-        public void RunEvents(EscEventTable escEventTable, EscActionsHandler actionHandler, string eventName)
+        public void RunEvents(Dictionary<string, EscEvent> eventTable, EscActionsHandler actionHandler, string eventName)
         {
-            var table = escEventTable.eventTable;
-            if (!table.ContainsKey(eventName))
+            if (!eventTable.ContainsKey(eventName))
             {
                 return;
             }
 
-            var commands = table[eventName].EventRoot.Links;
+            var commands = eventTable[eventName].EventRoot.Children;
             foreach(var task in commands)
             {
                 actionHandler.ExecuteAction(task);

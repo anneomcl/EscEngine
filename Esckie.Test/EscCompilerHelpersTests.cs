@@ -74,30 +74,30 @@ namespace Esckie.Test
         [TestMethod]
         public void TryParseEscEventShouldSuccessfullyParseValidEvent()
         {
-            var expectedEvent = new EscEvent("newEvent");
+            var expectedEventName = "newEvent";
 
-            EscEvent escEvent;
+            string eventName;
             var line = EscCompilerHelpers.EventIndicator + "newEvent";
-            EscCompilerHelpers.TryParseEscEvent(line, out escEvent).Should().BeTrue();
-            escEvent.Should().BeEquivalentTo(expectedEvent);
+            EscCompilerHelpers.TryParseEscEvent(line, out eventName).Should().BeTrue();
+            eventName.Should().BeEquivalentTo(expectedEventName);
         }
 
         [TestMethod]
         public void TryParseEscEventShouldReturnNullForNonEvent()
         {
-            EscEvent escEvent;
+            string eventName;
             var line = "Say Dog Meow";
-            EscCompilerHelpers.TryParseEscEvent(line, out escEvent).Should().BeFalse();
-            escEvent.Should().BeNull();
+            EscCompilerHelpers.TryParseEscEvent(line, out eventName).Should().BeFalse();
+            eventName.Should().BeNull();
         }
 
         [TestMethod]
         public void TryParseEscEventShouldReturnNullForBlank()
         {
-            EscEvent escEvent;
+            string eventName;
             var line = "";
-            EscCompilerHelpers.TryParseEscEvent(line, out escEvent).Should().BeFalse();
-            escEvent.Should().BeNull();
+            EscCompilerHelpers.TryParseEscEvent(line, out eventName).Should().BeFalse();
+            eventName.Should().BeNull();
         }
     }
 }

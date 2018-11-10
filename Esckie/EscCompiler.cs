@@ -24,21 +24,21 @@ namespace Esckie
         {
         }
 
-        public EscEventTable Compile(string path, Dictionary<string, ActionInfo> actions)
+        public Dictionary<string, EscEvent> Compile(string path, Dictionary<string, ActionMetadata> actions)
         {
-            var eventTable = new EscEventTable();
+            var eventTable = new Dictionary<string, EscEvent>();
             var lines = File.ReadAllLines(path);
             for(int i = 0; i < lines.Length; i++)
             {
-                EscEvent escEvent;
+                string eventName;
                 if (EscCompilerHelpers.IsComment(lines[i]))
                 {
                     continue;
                 }
-                else if (EscCompilerHelpers.TryParseEscEvent(lines[i], out escEvent))
+                else if (EscCompilerHelpers.TryParseEscEvent(lines[i], out eventName))
                 {
-                    escEvent.CompileEscEvent(lines.ToList(), i + 1, actions);
-                    eventTable.AddEvent(escEvent.EventName, escEvent);
+                    var escEvent = EscEventFactory.Create(eventName, lines.Skip(i + 1).ToList(), actions);
+                    eventTable.Add(escEvent.EventName, escEvent);
                 }
             }
 

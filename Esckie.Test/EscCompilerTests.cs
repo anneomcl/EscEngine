@@ -41,60 +41,60 @@ namespace Esckie.Test
         [TestMethod]
         public void EscCompilerParsesEventsToTable()
         {
+            var expected = this.GetExpectedResultForSayExamineSample();
             var result = EscCompiler.Instance.Compile(Path.Combine("../../TestData/", "SayExamineSample.esc"), handler.ScriptActions);
             result.Should().NotBeNull();
-            result.Should().BeEquivalentTo(GetExpectedResultForSayExamineSample());
+            result.Should().BeEquivalentTo(expected);
         }
 
-        private EscEventTable GetExpectedResultForSayExamineSample()
+        private Dictionary<string, EscEvent> GetExpectedResultForSayExamineSample()
         {
-            return new EscEventTable
+            return new Dictionary<string, EscEvent>
             {
-                eventTable = new Dictionary<string, EscEvent>()
                 {
+                    "talk",
+                    new EscEvent("talk")
                     {
-                        "talk",
-                        new EscEvent("talk")
+                        EventRoot = new EscCommand
                         {
-                            EventRoot = new VmCommand
+                            Name = "Root",
+                            Children = new List<EscCommand>()
                             {
-                                Links = new List<VmCommand>()
+                                new EscCommand
                                 {
-                                    new VmCommand
+                                    Name = "Say",
+                                    Parameters = new string[]
                                     {
-                                        Name = "Say",
-                                        Parameters = new string[]
-                                        {
-                                            "Name", "\"Hello, world!\""
-                                        }
+                                        "Name", "\"Hello, world!\""
                                     }
                                 }
                             }
                         }
-                    },
+                    }
+                },
+                {
+                    "examine",
+                    new EscEvent("examine")
                     {
-                        "examine",
-                        new EscEvent("examine")
+                        EventRoot = new EscCommand
                         {
-                            EventRoot = new VmCommand
+                            Name = "Root",
+                            Children = new List<EscCommand>()
                             {
-                                Links = new List<VmCommand>()
+                                new EscCommand
                                 {
-                                    new VmCommand
+                                    Name = "Say",
+                                    Parameters = new string[]
                                     {
-                                        Name = "Say",
-                                        Parameters = new string[]
-                                        {
-                                            "Default", "\"Look, it's a robot!\""
-                                        }
-                                    },
-                                    new VmCommand
+                                        "Default", "\"Look, it's a robot!\""
+                                    }
+                                },
+                                new EscCommand
+                                {
+                                    Name = "CameraToObject",
+                                    Parameters = new string[]
                                     {
-                                        Name = "CameraToObject",
-                                        Parameters = new string[]
-                                        {
-                                            "Robot"
-                                        }
+                                        "Robot"
                                     }
                                 }
                             }
