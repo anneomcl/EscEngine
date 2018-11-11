@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using Esckie.Common;
 using Esckie.Helpers;
 
@@ -25,8 +26,15 @@ namespace Esckie
         {
         }
 
-        public Dictionary<string, EscEvent> Compile(string path, Dictionary<string, ActionMetadata> actions)
+        public Dictionary<string, EscEvent> Compile(string path)
         {
+            return Compile(path, Assembly.GetExecutingAssembly());
+        }
+
+        public Dictionary<string, EscEvent> Compile(string path, Assembly executingAssembly)
+        {
+            EscActionsHandler.Initialize(executingAssembly);
+
             var eventTable = new Dictionary<string, EscEvent>();
             var lines = File.ReadAllLines(path);
             for(int i = 0; i < lines.Length; i++)
@@ -38,7 +46,10 @@ namespace Esckie
                 }
                 else if (EscCompilerHelpers.TryParseEscEvent(lines[i], out eventName))
                 {
-                    var escEvent = EscEventFactory.Create(eventName, lines.Skip(i + 1).ToList(), actions);
+                    var escEvent = EscEventFactory.Create(
+                        eventName,
+                        lines.Skip(i + 1).ToList(),
+                        EscActionsHandler.ScriptActions);
                     eventTable.Add(escEvent.EventName, escEvent);
                 }
             }

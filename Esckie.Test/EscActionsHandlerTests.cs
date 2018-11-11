@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Esckie.Actions;
 using Esckie.Common;
 using FluentAssertions;
@@ -10,19 +11,13 @@ namespace Esckie.Test
     [TestClass]
     public class EscActionsHandlerTests
     {
-        private EscActionsHandler handler;
-
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            this.handler = new EscActionsHandler();
-        }
-
         [TestMethod]
-        public void HandlerShouldConvertAllInterfaceAssembliesToEscActions()
+        public void InitializedHandlerShouldConvertAllInterfaceAssembliesToEscActions()
         {
-            this.handler.ScriptActions.Should().NotBeNull();
-            this.handler.ScriptActions.Should().BeEquivalentTo(GetExpectedEscActions());
+            EscActionsHandler.Initialize(Assembly.GetExecutingAssembly());
+
+            EscActionsHandler.ScriptActions.Should().NotBeNull();
+            EscActionsHandler.ScriptActions.Should().BeEquivalentTo(GetExpectedEscActions());
         }
 
         private Dictionary<string, ActionMetadata> GetExpectedEscActions()

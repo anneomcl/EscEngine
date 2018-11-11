@@ -5,31 +5,13 @@ using Esckie.Common;
 
 namespace Esckie
 {
-    public class EscActionsHandler
+    public static class EscActionsHandler
     {
-        public Dictionary<string, ActionMetadata> ScriptActions { get; }
+        public static Dictionary<string, ActionMetadata> ScriptActions = ScriptActions ?? new Dictionary<string, ActionMetadata>();
 
-        public EscActionsHandler()
+        public static void Initialize(Assembly executingAssembly)
         {
-            this.ScriptActions = new Dictionary<string, ActionMetadata>();
-            this.InitializeActions(Assembly.GetExecutingAssembly());
-        }
-
-        public EscActionsHandler(Assembly currAssembly)
-        {
-            this.ScriptActions = new Dictionary<string, ActionMetadata>();
-            this.InitializeActions(currAssembly);
-        }
-
-        public void ExecuteAction(EscCommand task)
-        {
-            var taskFunc = ScriptActions[task.Name].ActionType.GetMethod(task.Name);
-            taskFunc.Invoke(null, task.Parameters.ToArray());
-        }
-
-        private void InitializeActions(Assembly currAssembly)
-        {
-            var assemblies = currAssembly.GetTypes()
+            var assemblies = executingAssembly.GetTypes()
                 .Where(t => t.IsSubclassOf(typeof(EscAction)) && t.IsClass)
                 .Distinct()
                 .ToList();

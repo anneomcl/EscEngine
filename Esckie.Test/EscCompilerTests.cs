@@ -9,32 +9,24 @@ namespace Esckie.Test
     [TestClass]
     public class EscCompilerTests
     {
-        private EscActionsHandler handler;
-
-        [TestInitialize]
-        public void TestInitialize()
-        {
-            this.handler = new EscActionsHandler();
-        }
-
         [TestMethod]
         public void EscCompilerOpensEmptyFileSuccess()
         {
-            var result = EscCompiler.Instance.Compile(Path.Combine("../../TestData/", "Empty.esc"), handler.ScriptActions);
+            var result = EscCompiler.Instance.Compile(Path.Combine("../../TestData/", "Empty.esc"));
             result.Should().NotBeNull();
         }
 
         [TestMethod]
         public void EscCompilerThrowsOnInvalidFileName()
         {
-            Action action = () => EscCompiler.Instance.Compile(Path.Combine("../../TestData/", "Invalid.esc"), handler.ScriptActions);
+            Action action = () => EscCompiler.Instance.Compile(Path.Combine("../../TestData/", "Invalid.esc"));
             action.Should().Throw<FileNotFoundException>();
         }
 
         [TestMethod]
         public void EscCompilerDoesNotProcessCommentLine()
         {
-            var result = EscCompiler.Instance.Compile(Path.Combine("../../TestData/", "Comment.esc"), handler.ScriptActions);
+            var result = EscCompiler.Instance.Compile(Path.Combine("../../TestData/", "Comment.esc"));
             result.Should().NotBeNull();
         }
 
@@ -42,7 +34,7 @@ namespace Esckie.Test
         public void EscCompilerParsesEventsToTable()
         {
             var expected = this.GetExpectedResultForSayExamineSample();
-            var result = EscCompiler.Instance.Compile(Path.Combine("../../TestData/", "SayExamineSample.esc"), handler.ScriptActions);
+            var result = EscCompiler.Instance.Compile(Path.Combine("../../TestData/", "SayExamineSample.esc"));
             result.Should().NotBeNull();
             result.Should().BeEquivalentTo(expected);
         }
