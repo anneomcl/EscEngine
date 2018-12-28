@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Esckie.Actions;
 using Esckie.Common;
+using Esckie.Test.TestActions;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

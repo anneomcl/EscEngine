@@ -1,0 +1,7 @@
+:talk
+if TurtleIsPresent
+	Say Name "Hello, world!"
+if !WaterIsWet
+	Say Name "Hello, false world!"
+else
+	Say Name "Hello, world!"

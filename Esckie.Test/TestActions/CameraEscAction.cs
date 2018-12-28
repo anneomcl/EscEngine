@@ -1,4 +1,4 @@
-﻿namespace Esckie.Actions
+﻿namespace Esckie.Test.TestActions
 {
     public class CameraEscAction : EscAction
     {

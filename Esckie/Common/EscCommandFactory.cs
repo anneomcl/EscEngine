@@ -11,17 +11,9 @@ namespace Esckie.Common
         /// Creates a new VM command and assigns it to the correct parent.
         /// The current node is the default parent reference.
         /// </summary>
-        public static EscCommand Create(string line, int indentLevel, Dictionary<string, ActionMetadata> actions)
+        public static EscCommand Create(List<string> tokens, Dictionary<string, ActionMetadata> actions)
         {
             var newCommand = new EscCommand();
-
-            var tokens = EscCompilerHelpers.ParseLineToTokens(line);
-
-            //Ensure action is valid, and set the root's action
-            if (!actions.Keys.Contains(tokens.First()))
-            {
-                throw new Exception();
-            }
 
             newCommand.Name = tokens.First();
             tokens.RemoveAt(0);

@@ -9,7 +9,7 @@ namespace Esckie
         {
             Children = new List<EscCommand>();
             Parameters = new List<string>();
-            Conditions = new VmCondition();
+            Conditions = new Dictionary<string, bool>();
         }
 
         public EscCommand(string name)
@@ -17,18 +17,12 @@ namespace Esckie
             Name = name;
             Children = new List<EscCommand>();
             Parameters = new List<string>();
-            Conditions = new VmCondition();
+            Conditions = new Dictionary<string, bool>();
         }
 
         public string Name { get; set; }
         public IList<EscCommand> Children { get; set; }
         public List<string> Parameters { get; set; }
-        public VmCondition Conditions { get; set; }
-    }
-
-    public class VmCondition
-    {
-        public Dictionary<string, bool> IfTrue = new Dictionary<string, bool>();
-        public Dictionary<string, bool> IfFalse = new Dictionary<string, bool>();
+        public Dictionary<string, bool> Conditions { get; set; }
     }
 }

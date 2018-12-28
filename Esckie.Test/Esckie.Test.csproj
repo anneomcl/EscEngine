@@ -82,6 +82,7 @@
     </None>
     <None Include="TestData\Comment.esc" />
     <None Include="TestData\Empty.esc" />
+    <None Include="TestData\IfSayExample.esc" />
     <None Include="TestData\SayExamineSample.esc" />
   </ItemGroup>
   <ItemGroup>
