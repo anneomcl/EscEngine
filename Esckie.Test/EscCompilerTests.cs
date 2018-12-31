@@ -14,7 +14,7 @@ namespace Esckie.Test
         [TestInitialize]
         public void TestInitialize()
         {
-            EscActionsHandler.Initialize(Assembly.GetAssembly(typeof(DialogueEscAction)));
+            EscActionsHandler.Initialize(Assembly.GetExecutingAssembly());
         }
          
         [TestMethod]

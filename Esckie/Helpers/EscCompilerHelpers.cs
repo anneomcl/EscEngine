@@ -30,7 +30,9 @@ namespace Esckie.Helpers
         /// <returns></returns>
         public static List<string> ParseLineToTokens(string line)
         {
-            return Regex.Matches(line, "[^\\s\"']+|\"[^\"]*\"|'[^']*'")
+            return Regex.Matches(
+                    new string(line.Where(x => x != '\t' && x != '\n').ToArray()),
+                    "[^\\s\"']+|\"[^\"]*\"|'[^']*'")
                 .Cast<Match>()
                 .Select(m => m.Value)
                 .ToList();

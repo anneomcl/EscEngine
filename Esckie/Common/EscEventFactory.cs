@@ -55,12 +55,9 @@ namespace Esckie.Common
             {
                 root.Children.Add(EscCommandFactory.Create(tokens, actions));
                 lines.RemoveAt(0);
-                return ConvertScriptToLogicTree(indentLevel, lines, root, actions);
             }
-            else
-            {
-                throw new InvalidOperationException($"There is no action {action} available.");
-            }
+
+            return ConvertScriptToLogicTree(indentLevel, lines, root, actions);
         }
 
         private static KeyValuePair<string, bool> ParseCondition(string condition)

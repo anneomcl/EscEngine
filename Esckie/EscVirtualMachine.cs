@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Esckie
 {
@@ -19,7 +20,10 @@ namespace Esckie
 
         private EscVirtualMachine()
         {
+            this.Globals = new Dictionary<string, bool>();
         }
+
+        public Dictionary<string, bool> Globals { get; set; }
 
         /// <summary>
         /// This is called when an .esc script should be executed.
@@ -31,11 +35,53 @@ namespace Esckie
                 return;
             }
 
-            var commands = eventTable[eventName].EventRoot.Children;
+            var commands = this.GetCommandSequence(eventTable[eventName].EventRoot);
             foreach(var task in commands)
             {
                 this.ExecuteAction(task);
             }
+        }
+
+        private List<EscCommand> GetCommandSequence(EscCommand root)
+        {
+            var commandSequence = new List<EscCommand>();
+            foreach (var command in root.Children)
+            {
+                if (!this.IsCommandConditionSatisfied(command))
+                {
+                    continue;
+                }
+                if (command.Children.Count > 0)
+                {
+                    foreach (var child in command.Children)
+                    {
+                        if (child.Children.Count > 0)
+                        {
+                            commandSequence.AddRange(this.GetCommandSequence(child));
+                        }
+                        else
+                        {
+                            commandSequence.Add(child);
+                        }
+                    }
+                }
+            }
+
+            return commandSequence;
+        }
+
+        private bool IsCommandConditionSatisfied(EscCommand command)
+        {
+            foreach (var key in command.Conditions.Keys)
+            {
+                if (!Globals.ContainsKey(key) && command.Conditions[key] == false ||
+                    Globals.ContainsKey(key) && Globals[key] != command.Conditions[key])
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private void ExecuteAction(EscCommand task)
