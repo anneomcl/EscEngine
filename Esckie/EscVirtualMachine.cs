@@ -22,17 +22,11 @@ namespace Esckie
                 }
                 if (command.Children.Count > 0)
                 {
-                    foreach (var child in command.Children)
-                    {
-                        if (child.Children.Count > 0)
-                        {
-                            commandSequence.AddRange(this.GetCommandSequence(child));
-                        }
-                        else
-                        {
-                            commandSequence.Add(child);
-                        }
-                    }
+                    commandSequence.AddRange(this.GetCommandSequence(command));
+                }
+                else
+                {
+                    commandSequence.Add(command);
                 }
             }
 
