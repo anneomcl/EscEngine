@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -14,38 +15,42 @@ namespace Esckie.Test
         [TestMethod]
         public void EscVmRunsTalkEventSuccess()
         {
-            var events = EscCompiler.Instance.Compile(Path.Combine("../../TestData/", "SayExamineSample.esc"));
-            EscVirtualMachine.Instance.RunEvent(events, "talk");
+            var controller = new EscController(Assembly.GetExecutingAssembly());
+            var events = controller.Compile(Path.Combine("../../TestData/", "SayExamineSample.esc"));
+            controller.RunEvent(events, "talk");
         }
 
         [TestMethod]
         public void EscVmRunsExamineEventSuccess()
         {
-            var events = EscCompiler.Instance.Compile(Path.Combine("../../TestData/", "SayExamineSample.esc"));
-            EscVirtualMachine.Instance.RunEvent(events, "examine");
+            var controller = new EscController(Assembly.GetExecutingAssembly());
+            var events = controller.Compile(Path.Combine("../../TestData/", "SayExamineSample.esc"));
+            controller.RunEvent(events, "examine");
         }
 
         [TestMethod]
         public void EscVmRunsControlLogicEventSuccess()
         {
-            var events = EscCompiler.Instance.Compile(Path.Combine("../../TestData/", "IfSayExample.esc"), Assembly.GetExecutingAssembly());
-            var vm = EscVirtualMachine.Instance;
+            var globals = new Dictionary<string, bool>();
+            var controller = new EscController(globals, Assembly.GetExecutingAssembly());
+            var events = controller.Compile(Path.Combine("../../TestData/", "IfSayExample.esc"));
+
             // Should be:
             // Hello, world!
             // Hello, world!
-            vm.Globals.Add("TurtleIsPresent", true);
-            vm.RunEvent(events, "talk");
+            globals.Add("TurtleIsPresent", true);
+            controller.RunEvent(events, "talk");
 
             // Should be:
             // Hello, world!
             // Hello, false world!
-            vm.Globals.Add("WaterIsWet", false);
-            vm.RunEvent(events, "talk");
+            globals.Add("WaterIsWet", false);
+            controller.RunEvent(events, "talk");
 
             // Should be:
             // Hello, false world!
-            vm.Globals["TurtleIsPresent"] = false;
-            vm.RunEvent(events, "talk");
+            globals["TurtleIsPresent"] = false;
+            controller.RunEvent(events, "talk");
         }
     }
 }

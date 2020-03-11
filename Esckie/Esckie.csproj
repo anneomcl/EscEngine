@@ -51,14 +51,18 @@
     <Compile Include="Common\ActionMetadata.cs" />
     <Compile Include="Common\EscEventFactory.cs" />
     <Compile Include="Common\EscCommandFactory.cs" />
-    <Compile Include="EscActionsHandler.cs" />
-    <Compile Include="EscCompiler.cs" />
+    <Compile Include="EscController.cs" />
     <Compile Include="Helpers\EscCompilerHelpers.cs" />
     <Compile Include="Common\EscEvent.cs" />
     <Compile Include="EscVirtualMachine.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\EscCommand.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>Esckie.Test</_Parameter1>
+    </AssemblyAttribute>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

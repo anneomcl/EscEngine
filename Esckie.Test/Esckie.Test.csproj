@@ -68,7 +68,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EscActionsHandlerTests.cs" />
     <Compile Include="EscCompilerHelpersTests.cs" />
     <Compile Include="EscCompilerTests.cs" />
     <Compile Include="EscVmTests.cs" />
